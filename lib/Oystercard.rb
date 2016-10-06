@@ -1,15 +1,13 @@
-require_relative "Journey.rb"
 
 class Oystercard
 
   attr_reader :balance, :journeys
   MAXIMUM_LIMIT = 90
   MINIMUM_BALANCE = 1
-  MINIMUM_FARE = 1
 
-  def initialize(journey = Journey.new)
+
+  def initialize
     @balance = 0
-    # @entry_station = nil
     @journeys = []
   end
 
@@ -28,7 +26,7 @@ class Oystercard
   # end
 
   def touch_out(station)
-    deduct(MINIMUM_FARE)
+    deduct(Journey::MINIMUM_FARE)
     list_journeys(station)
     @entry_station = nil
   end

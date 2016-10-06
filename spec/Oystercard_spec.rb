@@ -1,5 +1,6 @@
 require "Oystercard.rb"
 
+
 describe Oystercard do
 
   subject(:card) {described_class.new}
@@ -52,7 +53,7 @@ end
 it "should charge the card for the minimum fare" do
   card.top_up(15)
   card.touch_in(station)
-  expect {card.touch_out(station)}.to change{card.balance}.by(-Oystercard::MINIMUM_FARE)
+  expect {card.touch_out(station)}.to change{card.balance}.by(-Journey::MINIMUM_FARE)
 end
 
 it "returns journey history" do

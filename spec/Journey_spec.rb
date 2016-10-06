@@ -21,4 +21,9 @@ it "should charge the penalty if no exit station given" do
   expect(journey.fare).to eq Journey::PENALTY
 end
 
+it 'should charge minimum fare if journey complete' do
+  journey.finish(:station)
+  expect(journey.fare).to eq Journey::MINIMUM_FARE
+end
+
 end
