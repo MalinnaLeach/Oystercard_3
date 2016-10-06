@@ -19,12 +19,14 @@ describe JourneyLog do
     expect(subject.live_journey.entry_station).to eq nil
   end
 
-  it {should respond_to :finish}
+  it "should add an exit station to the current journey" do
+    subject.start(station)
+    subject.finish(station)
+    expect(subject.live_journey.exit_station).to eq station
+  end
 
-
-  it {should respond_to :journeys}
-
-
-
+  it "should return a list of all previous journeys" do
+    expect(subject.journeys).to eq []
+  end
 
 end

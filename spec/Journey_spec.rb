@@ -27,4 +27,9 @@ describe Journey do
     expect(journey.fare).to eq Journey::MINIMUM_FARE
   end
 
+  it "should be able to change the exit station" do
+    journey.change_in_station(:station)
+    expect(journey.exit_station).to eq :station
+  end
+
 end

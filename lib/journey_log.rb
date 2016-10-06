@@ -12,11 +12,11 @@ class JourneyLog
   end
 
   def finish(exit_station)
-
+    @live_journey.change_in_station(exit_station)
   end
 
   def journeys
-
+    @journey_list
   end
 
   def current_journey
