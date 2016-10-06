@@ -8,21 +8,18 @@ attr_reader :entry_station, :exit_station
 
 def initialize(entry_station = nil)
   @entry_station = entry_station
-  @complete = false
 end
 
 def finish(station = nil)
   @exit_station = station
-  @complete = true
-  self
 end
 
 def fare
-  (!entry_station || !exit_station) ? PENALTY : MINIMUM_FARE
+  complete? ? MINIMUM_FARE : PENALTY
 end
 
 def complete?
-    @complete
+    entry_station && exit_station
 end
 
 end

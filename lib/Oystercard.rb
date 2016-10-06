@@ -22,12 +22,18 @@ class Oystercard
     @current_journey = Journey.new(station)
   end
 
-  # def in_journey?
-  #   !!@entry_station
-  # end
-
   def touch_out(station)
-    deduct(Journey::MINIMUM_FARE)
+    finish_journey(station)
+    deduct
+    save_reset
+  end
+
+  def finish_journey(station)
+    @current_journey = Journey.new(nil) unless @current_journey
+    @current_journey.finish(station)
+  end
+
+  def save_reset
     @journeys << @current_journey
     @current_journey = nil
   end
@@ -38,8 +44,8 @@ class Oystercard
 
 private
 
-  def deduct(amount)
-    @balance -= amount
+  def deduct
+    @balance -= @current_journey.fare
   end
 
 end
