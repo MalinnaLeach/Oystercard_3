@@ -10,7 +10,7 @@ describe Oystercard do
   #let(:journey) { {entry_station: entry_station, exit_station: exit_station} }
 
 it "returns list of journeys to be empty" do
-  expect(card.journeys).to eq []
+  expect(card.list_journeys).to eq []
 end
 
 it "should have a balance of zero" do
@@ -59,9 +59,9 @@ end
 it "returns journey history" do
   card.top_up(5)
   card.touch_in(entry_station)
+  test_journey = card.current_journey
   card.touch_out(exit_station)
-  journey = {entry_station: entry_station, exit_station: exit_station}
-  expect(card.journeys).to include journey
+  expect(card.list_journeys).to eq [test_journey]
 end
 
 end
